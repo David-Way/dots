@@ -53,6 +53,48 @@ class App extends Component {
 
     this.handleDrag = debounce(this.handleDrag, 10);
   }
+
+  handleDrag(e) {
+    let x = ((e.clientX - e.offsetX) / window.innerWidth * 100);
+    let y = ((e.clientY - e.offsetY) / window.innerHeight * 100);
+
+    this.state.dots.map((dot, i) => {
+      let distance = this.getDistance(
+        document.getElementById(dot.id),
+        e.target
+      );
+
+      if (distance <= 50) {
+        console.log('e');
+        vibrate([100, 20]);
+      }
+    });
+
+    setPosition({
+      x: x,
+      y: y
+    });
+  }
+
+  getDistance(a, b) {
+  console.log(b);
+    let aPosition = this.getPositionAtCenter(a);
+    let bPosition = this.getPositionAtCenter(b);
+
+    return Math.sqrt(
+      Math.pow(aPosition.x - bPosition.x, 2) +
+      Math.pow(aPosition.y - bPosition.y, 2)
+    );
+  }
+
+  getPositionAtCenter(element) {
+    let data = element.getBoundingClientRect();
+
+    return {
+      x: data.left + data.width / 2,
+      y: data.top + data.height / 2
+    };
+  };
 }
 
 export default App;
