@@ -15,6 +15,44 @@ class App extends Component {
       y: 0
     }
   };
+
+  constructor(props) {
+    super(props);
+
+    subscribeToTimer((err, timestamp) => this.setState({
+      timestamp
+    }));
+
+    subscribeToRoom(this.state.name, (err, occupants) => {
+      this.setState({
+        occupants
+      });
+
+      setPosition({
+        x: this.state.pos.x,
+        y: this.state.pos.y
+      });
+    });
+
+    setPosition({
+      x: 0,
+      y: 0
+    });
+
+    subscribeToPositionUpdates((err, dot) => {
+      if (true) { // update it
+        let newDots = [];
+        newDots.push(dot)
+        this.setState({ dots: newDots })
+      } else { // add it
+        this.setState({
+          dots: this.state.dots.concat([dot])
+        });
+      }
+    });
+
+    this.handleDrag = debounce(this.handleDrag, 10);
+  }
 }
 
 export default App;
