@@ -44,3 +44,78 @@ body::after {
   bottom: 0;
   left: 0;
 }
+
+.dot {
+  z-index: 10;
+  box-sizing: border-box;
+  position: absolute;
+  background-color: #FF4787;
+  background: #FF4787 -webkit-gradient(linear, left top, left bottom, from(#FF8247), to(#FF4787)) no-repeat;
+  background: #FF4787 -moz-linear-gradient(top, #FF8247, #FF4787) no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF8247, endColorstr=#FF4787) no-repeat;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#FF8247, endColorstr=#FF8247)" no-repeat;
+  height: 60px;
+  width: 56px;
+  padding: 2px;
+  border-radius: 100vw;
+}
+
+.dot:after {
+	border-radius: 100vw;
+	box-shadow: 0 4px 8px 0 #343334;
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  transition: opacity 180ms ease-in;
+}
+
+.dot:hover:after {
+  opacity: 1;
+}
+
+.dot:active:after {
+	transition-duration: 60ms;
+	opacity: 0;
+}
+
+.dot.active:after {
+	transition-duration: 60ms;
+	opacity: 0;
+}
+
+.dot--other {
+  pointer-events: none;
+  z-index: 0;
+  background-color: #BAF4FF;
+  background: #BAF4FF -webkit-gradient(linear, left top, left bottom, from(#1CBCD9), to(#BAF4FF)) no-repeat;
+  background: #BAF4FF -moz-linear-gradient(top, #1CBCD9, #BAF4FF) no-repeat;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1CBCD9, endColorstr=#BAF4FF) no-repeat;
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#1CBCD9, endColorstr=#1CBCD9)" no-repeat;
+}
+
+.dot--other:after {
+	box-shadow: none;
+}
+
+.dot__label {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  max-width: 120px;
+  transform: translateX(-50%);
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none
+}
