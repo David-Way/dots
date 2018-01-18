@@ -95,6 +95,45 @@ class App extends Component {
       y: data.top + data.height / 2
     };
   };
+
+  render() {
+    let translation = 'translate('+this.state.currentX+'px, '+this.state.currentY+'px)';
+
+    return (
+      <div className="App">
+        <Draggable
+          axis="both"
+          handle=".dot"
+          defaultPosition={{x: 0, y: 0}}
+          defaultClassNameDragging="active"
+          position={null}
+          grid={[1, 1]}
+          onStart={this.handleStart}
+          onDrag={(e) => this.handleDrag(e)}
+          onStop={this.handleStop}>
+          <div className={'dot'} style={{ backgroundImage: `url(${iconSVG})`, transform: translation }}>
+            <span className="dot__label">{this.state.name}</span>
+          </div>
+        </Draggable>
+
+        {this.state.dots.map((dot, i) => {
+          let translation = 'translate('
+            + (dot.pos.x * (window.innerWidth / 100) - 7.5) + 'px, '
+            + (dot.pos.y * (window.innerHeight / 100) - 7.5) + 'px)';
+          return (
+            <div id={dot.id} key={dot.id} className={'dot dot--other'} style={{ backgroundImage: `url(${iconSVG})`, transform: translation }}>
+              <span className="dot__label">{dot.name}</span>
+            </div>
+          )
+        })}
+
+        <span className={'debug'}>
+          <p>Occupants: {this.state.occupants}</p>
+          <p>Server time: {this.state.timestamp}</p>
+        </span>
+      </div>
+    );
+  }
 }
 
 export default App;
