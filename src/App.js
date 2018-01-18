@@ -58,14 +58,13 @@ class App extends Component {
     let x = ((e.clientX - e.offsetX) / window.innerWidth * 100);
     let y = ((e.clientY - e.offsetY) / window.innerHeight * 100);
 
-    this.state.dots.map((dot, i) => {
+    this.state.dots.forEach((dot, i) => {
       let distance = this.getDistance(
         document.getElementById(dot.id),
         e.target
       );
 
       if (distance <= 50) {
-        console.log('e');
         vibrate([100, 20]);
       }
     });
