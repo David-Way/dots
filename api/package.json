@@ -1,0 +1,13 @@
+{
+  "name": "dots-api",
+  "author": "david_way@live.ie",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "socket.io": "^2.0.4",
+  },
+  "scripts": {
+    "start": "node server",
+  },
+  "entry-point": "server.js",
+}
