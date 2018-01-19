@@ -1,5 +1,5 @@
 import openSocket from 'socket.io-client';
-const  socket = openSocket('https://davidway.ie:8080');
+const  socket = openSocket('https://davidway.ie/node:8080');
 
 function subscribeToTimer(cb) {
   socket.on('timer', timestamp => cb(null, timestamp));
